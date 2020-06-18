@@ -1,0 +1,38 @@
+﻿@page "/databinding"
+@inherits DataBindingBase
+
+<h3>Data Binding</h3>
+<hr />
+<h3>One-Way</h3>
+<div>
+    <p>Call me @(Gender == "Male"?"Mr.":"Miss") @Name</p>
+</div>
+<div>
+    <input value="@Name" />
+</div>
+<hr />
+<h3>Two-way</h3>
+<div>
+    <input value="@Name" @onchange="@(e => { Name = e.Value.ToString(); })" />
+</div>
+<div>
+    <input @bind="Name" />
+</div>
+<div>
+    <input @bind="Name" @bind:event="oninput"/>
+</div>
+<hr />
+<div>
+    <input @bind="Colour"/>
+</div>
+<div @bind-style="Colour" @bind-style:event="onchange">
+    <h3>The background color of this h3 element changes.</h3>
+</div>
+<hr />
+<b>Text Area</b>
+<div>
+    <textarea @bind="Text" @bind:event="oninput" style="width:500px"/>
+</div>
+<div>
+    Character count = @Text.Length
+</div>
